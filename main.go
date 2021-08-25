@@ -2,6 +2,7 @@ package main
 
 import (
 	// "encoding/json"
+
 	"log"
 	"net/http"
 
@@ -25,6 +26,33 @@ type Book struct {
 	Author	*Author		`json:"author"`
 }
 
+// get all books
+func getBooks(w http.ResponseWriter,r *http.Request){
+
+}
+
+// get particular book
+func getBook(w http.ResponseWriter,r *http.Request){
+
+}
+
+// create a new book
+func createBook(w http.ResponseWriter,r *http.Request){
+
+}
+
+// update book
+func updateBook(w http.ResponseWriter,r *http.Request){
+
+}
+
+//delete a particular book
+func deleteBook(w http.ResponseWriter,r *http.Request){
+
+}
+
+
+
 
 
 func main(){
@@ -39,7 +67,9 @@ func main(){
 	router.HandleFunc("/api/books/{id}",deleteBook).Methods("DELETE")
 
 	// running server
-	log.Fatal(http.ListenAndServe(":8080",router))
+	log.Fatal(http.ListenAndServe(":8080",router));
+
+
 
 
 }
