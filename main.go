@@ -3,6 +3,7 @@ package main
 import (
 	// "encoding/json"
 
+	"encoding/json"
 	"log"
 	"net/http"
 
@@ -26,9 +27,14 @@ type Book struct {
 	Author	*Author		`json:"author"`
 }
 
+// Init books var as a slice book struct
+// slice : similar to array 
+var books []Book
+
 // get all books
 func getBooks(w http.ResponseWriter,r *http.Request){
-
+	w.Header().Set("Content-Type","application/json")
+	json.NewEncoder(w).Encode(books)
 }
 
 // get particular book
@@ -58,6 +64,13 @@ func deleteBook(w http.ResponseWriter,r *http.Request){
 func main(){
 	// initializing router
 	router := mux.NewRouter()
+
+	// Mock Data
+	books = append(books,Book{ ID:"1" ,Isbn: "433",Title: "Book1", Author: &Author{FirstName:"Aniket",LastName:"Pal"}})
+	books = append(books,Book{ ID:"2" ,Isbn: "434",Title: "Book2", Author: &Author{FirstName:"Aniket2",LastName:"Pal2"}})
+	books = append(books,Book{ ID:"3" ,Isbn: "435",Title: "Book3", Author: &Author{FirstName:"Aniket3",LastName:"Pal3"}})
+
+
 
 	// routes
 	router.HandleFunc("/api/books",getBooks).Methods("GET")
