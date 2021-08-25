@@ -47,7 +47,6 @@ func getBook(w http.ResponseWriter,r *http.Request){
 			return 
 		}
 	}
-
 	json.NewEncoder(w).Encode(&Book{})
 }
 
@@ -113,7 +112,7 @@ func main(){
 	router.HandleFunc("/api/books/{id}",deleteBook).Methods("DELETE")
 
 	// running server
-	log.Fatal(http.ListenAndServe(":8080",router));
+	log.Fatal(http.ListenAndServe(":7777",router));
 
 
 
